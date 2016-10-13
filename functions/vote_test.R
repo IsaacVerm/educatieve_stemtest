@@ -1,5 +1,4 @@
 
-
 vote_test <- function(test_type, votes, weights) {
   
               # setup selenium
@@ -128,6 +127,10 @@ random_votes <- sample(0:2, 35, replace = TRUE)
 random_weights <- seq(from = 0, to = 100, length.out = 11)
 
 result_test <- vote_test("federaal", votes = random_votes, weights = random_weights)
+
+### save function
+
+save(vote_test, file = file.path(root_path,"educatieve_stemtest","functions","vote_test.RData"))
 
 
 

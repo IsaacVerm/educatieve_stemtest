@@ -1,16 +1,20 @@
-# setup selenium
 
-library(RSelenium)
-
-RSelenium::startServer(javaargs = c("-Dwebdriver.gecko.driver=\"C:/Users/Isaac/Documents/geckodriver.exe\""))
-
-driver <- remoteDriver(extraCapabilities = list(marionette = TRUE))
-
-driver$open()
-
-### function
 
 vote_test <- function(test_type, votes, weights) {
+  
+              # setup selenium
+  
+              library(RSelenium)
+              library(stringr)
+              library(plyr)
+  
+              RSelenium::startServer(javaargs = c("-Dwebdriver.gecko.driver=\"C:/Users/Isaac/Documents/geckodriver.exe\""))
+  
+              driver <- remoteDriver(extraCapabilities = list(marionette = TRUE))
+  
+              driver$open()
+  
+              ### function
   
               # go to voting test
 
@@ -87,6 +91,30 @@ vote_test <- function(test_type, votes, weights) {
               parties <- lapply(parties, function(x) x$getElementAttribute("class"))
               
               result <- list(results, parties)
+              
+              # clean result
+              
+              result <- lapply(result, unlist)
+              
+              result[[1]] <- as.numeric(str_extract(string = result[[1]], pattern = "\\d+\\.\\d+"))
+              
+              result[[2]] <- str_extract(string = result[[2]][1:length(result[[1]])], pattern = "\\d")
+              result[[2]] <- revalue(result[[2]], c("1"="CD&V",
+                                                    "2"="Groen",
+                                                    "3"="N-VA",
+                                                    "4"="OpenVld",
+                                                    "5"="SP.A",
+                                                    "6"="Vlaams Belang",
+                                                    "7"="CDH",
+                                                    "8"="Ecolo",
+                                                    "9"="FDF",
+                                                    "10"="MR",
+                                                    "11"="PS"))
+              
+              result <- data.frame(score = result[[1]],
+                                   party = result[[2]])
+              
+              result <- result[!is.na(result$score), ]
               
               return(result)
 

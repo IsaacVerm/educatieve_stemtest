@@ -40,14 +40,14 @@ templates$test <- NULL
 
 ## find themes by test
 
-themes <- as.data.frame(apply(templates, 1, function(x) is.na(x)))
+themes <- as.data.frame(apply(templates, 1, function(x) !is.na(x)))
 
 ## correct names
 
 themes$theme <- rownames(themes)
 rownames(themes) <- NULL
 
-names(themes) <- c(unique(categories$test),"theme")
+names(themes) <- c(levels(categories$test),"theme")
 
 ### save
 

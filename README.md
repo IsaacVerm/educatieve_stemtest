@@ -32,10 +32,22 @@ De bedoeling is om na te gaan of een verstoring inherent aanwezig is in de stemt
 
 ## Berekening score
 
-### Abstractie van gekozen thema's
+### Gewichten stellingen
 
-Dit wordt onderzocht in party_weights_mechanism.R.
+#### Code
 
-De gewichten van elk thema worden op 0 gezet zodat deze niet meespelen. Er wordt nagegaan of het resultaat in dat geval gelijk is aan het product van de uitslag op de stelling met het gewicht van een partij voor die stelling.
+Dit wordt [hier](/analysis/scripts/score_mechanism)  onderzocht.
+
+De gewichten van elk thema worden op 0 gezet zodat de thema's geen invloed op het eindresultaat uitoefenen.
 
 Als men het oneens is met een bepaalde partij wordt resultaat 0 gegeven, als men het wel eens is wordt resultaat 1 gegeven.
+
+#### Naïve interpretatie
+
+Er wordt nagegaan of het resultaat gelijk is aan het product van de uitslag op de stelling met het gewicht van een partij voor die stelling.
+
+Dit blijkt zeer sterk bij de realiteit te liggen, maar toch niet volledig: 
+
+![Verschil in verwachte en echte score](/analysis/output/score_mechanism/difference_by_test.png)
+
+### Thema's

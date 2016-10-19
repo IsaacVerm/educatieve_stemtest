@@ -1,5 +1,4 @@
-
-vote_test <- function(test_type, votes, weights) {
+vote_test <- function(test_type, votes, weights, sleep = 0.5) {
   
               # setup selenium
   
@@ -10,7 +9,7 @@ vote_test <- function(test_type, votes, weights) {
               RSelenium::startServer(javaargs = c("-Dwebdriver.gecko.driver=\"C:/Users/Isaac/Documents/geckodriver.exe\""))
   
               driver <- remoteDriver(extraCapabilities = list(marionette = TRUE))
-  
+              
               driver$open()
   
               ### function
@@ -23,7 +22,7 @@ vote_test <- function(test_type, votes, weights) {
 
               lapply(votes, function(x) {
                 
-                Sys.sleep(2)
+                Sys.sleep(sleep)
 
                 xpath_not_visible_1 <- "'display: none; left: -880px;'"
                 xpath_not_visible_2 <- "'left: -880px; display: none;'"
@@ -44,7 +43,7 @@ vote_test <- function(test_type, votes, weights) {
 
               # choose weights
               
-              Sys.sleep(2)
+              Sys.sleep(sleep)
               
               slider_nrs <- 1:length(weights)
               
@@ -72,8 +71,8 @@ vote_test <- function(test_type, votes, weights) {
               
               
               # get results
-              
-              Sys.sleep(2)
+
+              Sys.sleep(sleep)
               
               results_xpath <- "//div[@class='bar']"
               

@@ -50,4 +50,8 @@ Dit blijkt zeer sterk bij de realiteit te liggen, maar toch niet volledig:
 
 ![Verschil in verwachte en echte score](/analysis/output/score_mechanism/difference_by_test.png)
 
+#### Aanpassing afronding
+
+Aangezien de verschillen tussen de verwachte en de werkelijke score niet zo groot zijn is de eerste gedachte intuïtief dat het hier gaat om een afrondingskwestie.
+
 ### Thema's
